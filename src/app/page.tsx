@@ -26,7 +26,7 @@ export default async function Home() {
             technology solutions.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-2">
-            When I'm not coding, you'll find me:
+            When I&apos;m not coding, you&apos;ll find me:
           </p>
           <div className="flex flex-wrap gap-2">
             <span className="bg-muted text-foreground px-3 py-1 rounded-full text-sm">
@@ -47,7 +47,7 @@ export default async function Home() {
         <h2 className="text-2xl font-semibold">Contact</h2>
         <div className="bg-card border rounded-lg p-6 shadow-sm space-y-4">
           <p className="text-muted-foreground">
-            I'd love to connect — feel free to reach out through any of the
+            I&apos;d love to connect — feel free to reach out through any of the
             platforms below:
           </p>
           <div className="flex flex-wrap gap-3">

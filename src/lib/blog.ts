@@ -36,6 +36,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
     return allPosts.sort((a, b) => b.date.localeCompare(a.date));
   } catch (error) {
     // If content directory doesn't exist, return only external posts
+    console.error(error);
     return posts.sort((a, b) => b.date.localeCompare(a.date));
   }
 }
@@ -59,6 +60,7 @@ export async function getLocalPosts(): Promise<BlogPost[]> {
     const resolvedLocalPosts = await Promise.all(localPosts);
     return resolvedLocalPosts.sort((a, b) => b.date.localeCompare(a.date));
   } catch (error) {
+    console.error(error);
     return [];
   }
 }
