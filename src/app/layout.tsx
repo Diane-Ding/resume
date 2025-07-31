@@ -32,7 +32,7 @@ export default function RootLayout({
             <Link href="/" className="mb-4">
               <div className="rounded-full bg-neutral-200 w-24 h-24 flex items-center justify-center overflow-hidden text-4xl font-bold mb-4">
                 <Image
-                  src="/headProfile.png"
+                  src="headProfile.png"
                   alt="Profile"
                   width={96}
                   height={96}
