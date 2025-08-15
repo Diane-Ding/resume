@@ -1,21 +1,25 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { MailIcon, GithubIcon, LinkedinIcon } from "lucide-react";
-import { getAllPosts } from "@/lib/blog";
 import siteConfig from "@/site.config";
+import { Timeline } from "@/components/ui/timeline";
 
 export default async function Home() {
-  const posts = await getAllPosts();
-  const recentPosts = posts.slice(0, 3); // Show only 3 most recent posts
-
   return (
     <main className="space-y-16">
       {/* About Section */}
       <section className="space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-semibold">About</h2>
-          <Button asChild variant="outline" size="sm">
-            <a href={`/${siteConfig.resume.filename}`} download>
+          <Button
+            asChild
+            size="sm"
+            className="bg-black text-white hover:bg-gray-800"
+          >
+            <a
+              href={`/${siteConfig.resume.filename}`}
+              download={siteConfig.resume.filename}
+            >
               {siteConfig.resume.label}
             </a>
           </Button>
@@ -80,6 +84,14 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Work Experience Section */}
+      <section className="space-y-4">
+        <h2 className="text-2xl font-semibold">Work Experience</h2>
+        <div className="bg-card border rounded-lg p-6 shadow-sm">
+          <Timeline items={siteConfig.workExperience} />
+        </div>
+      </section>
+
       {/* Projects Section
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold">Projects</h2>
@@ -88,58 +100,17 @@ export default async function Home() {
       </section> */}
 
       {/* Blog Section */}
-      <section className="space-y-4">
-        <h2 className="text-2xl font-semibold">Blog</h2>
-        {recentPosts.length === 0 ? (
-          <p className="text-muted-foreground">No blog posts yet.</p>
-        ) : (
-          <ul className="space-y-6">
-            {recentPosts.map((post) => (
-              <li key={post.slug} className="border-b pb-4">
-                {post.url ? (
-                  <a
-                    href={post.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-lg font-medium hover:underline flex items-center gap-2"
-                  >
-                    {post.title}
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                      />
-                    </svg>
-                  </a>
-                ) : (
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="text-lg font-medium hover:underline"
-                  >
-                    {post.title}
-                  </Link>
-                )}
-                <div className="text-xs text-muted-foreground mt-1">
-                  {post.date}
-                </div>
-                {post.description && (
-                  <div className="text-sm mt-1">{post.description}</div>
-                )}
-              </li>
-            ))}
-          </ul>
-        )}
-        <Button asChild>
-          <Link href="/blog">Read More Blogs</Link>
+      <div className="flex items-center justify-between gap-8 bg-card border rounded-lg p-6 shadow-sm">
+        <div>
+          <p className="text-muted-foreground text-sm">
+            👀 Here are some reflections on my personal life. Take a quick look
+            if you&apos;re interested!
+          </p>
+        </div>
+        <Button asChild className="bg-black text-white hover:bg-gray-800">
+          <Link href="/blog">Read My Blog</Link>
         </Button>
-      </section>
+      </div>
     </main>
   );
 }
